@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { 
   getCounter, 
@@ -8,17 +8,19 @@ import {
   increment, 
   decrement, 
   reset,
-  // load, 
+  load, 
   } from './actions.js'
 import {CounterWidget} from '../../components/CounterWidget.jsx'
 
 function CounterPage() {
   const counter = useSelector(getCounter)
+  const isLoading = useSelector(getIsLoading)
+  const isError = useSelector(getIsError)
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   // dispatch(load())
-  // }, []);
+  useEffect(() => {
+    dispatch(load())
+  }, []); 
 
   const handleIncrement = () => {
     dispatch(increment())
@@ -32,12 +34,19 @@ function CounterPage() {
     dispatch(reset())
   }
 
+  const handleRetry = () => {
+    dispatch(load())
+  }
+
   return (
     <CounterWidget
       counter={counter}
+      isLoading={isLoading}
+      isError={isError}
       handleDecrementBtnClick={handleIncrement}
       handleIncrementBtnClick={handleDecrement}
       handleResetBtnClick={handleReset}
+      handleRetryBtnClick={handleRetry}
     />
   )
 }

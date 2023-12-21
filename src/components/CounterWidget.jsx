@@ -1,11 +1,31 @@
 import React from 'react';
 
 export function CounterWidget({
-    counter, 
+    counter,
+    isError,
+    isLoading, 
     handleDecrementBtnClick, 
     handleIncrementBtnClick,
-    handleResetBtnClick
+    handleResetBtnClick, 
+    handleRetryBtnClick
 }) {
+    if (isLoading) {
+        return(
+            <div>
+                <p>Загрузка...</p>
+            </div>
+        )
+    }
+
+    if (isError) {
+        return(
+            <div>
+                <p>Ошибка</p>
+                <button onClick={handleRetryBtnClick}>Повторить</button>
+            </div>
+        )
+    }
+
     return ( 
         <div>
             {counter}

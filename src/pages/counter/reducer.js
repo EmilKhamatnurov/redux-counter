@@ -9,7 +9,7 @@ import {
 } from './constants.js'
 
 const initialState = {
-    value: 0, 
+    value: null, 
     isLoading: false, 
     isError: false
 }
