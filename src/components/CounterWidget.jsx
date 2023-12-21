@@ -7,6 +7,7 @@ export function CounterWidget({
     handleDecrementBtnClick, 
     handleIncrementBtnClick,
     handleResetBtnClick, 
+    handleSaveBtnClick, 
     handleRetryBtnClick
 }) {
     if (isLoading) {
@@ -32,6 +33,7 @@ export function CounterWidget({
             <button onClick={handleDecrementBtnClick}>-1</button>
             <button onClick={handleIncrementBtnClick}>+1</button>
             <button onClick={handleResetBtnClick}>Обновить счетчик</button>
+            <button onClick={handleSaveBtnClick}>Сохранить счетчик</button>
         </div>
      );
 }

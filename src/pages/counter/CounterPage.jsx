@@ -8,7 +8,8 @@ import {
   increment, 
   decrement, 
   reset,
-  load, 
+  load,
+  save 
   } from './actions.js'
 import {CounterWidget} from '../../components/CounterWidget.jsx'
 
@@ -33,6 +34,10 @@ function CounterPage() {
   const handleReset = () => {
     dispatch(reset())
   }
+  
+  const handleSave = () => {
+    dispatch(save())
+  }
 
   const handleRetry = () => {
     dispatch(load())
@@ -43,9 +48,10 @@ function CounterPage() {
       counter={counter}
       isLoading={isLoading}
       isError={isError}
-      handleDecrementBtnClick={handleIncrement}
-      handleIncrementBtnClick={handleDecrement}
+      handleDecrementBtnClick={handleDecrement}
+      handleIncrementBtnClick={handleIncrement}
       handleResetBtnClick={handleReset}
+      handleSaveBtnClick={handleSave}
       handleRetryBtnClick={handleRetry}
     />
   )

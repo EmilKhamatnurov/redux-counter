@@ -1,5 +1,5 @@
 import { Response, createServer } from "miragejs"
-const INITIAL_COUNTER = 0;
+const INITIAL_COUNTER = 10;
 
 createServer({
   routes() {
@@ -9,5 +9,10 @@ createServer({
         return {counter: INITIAL_COUNTER}
     })
 
+    this.post("/api/reminders", (schema, request) => {
+      let attrs = JSON.parse(request.requestBody)
+
+      return schema.reminders.create(attrs)
+    })
   },
 })

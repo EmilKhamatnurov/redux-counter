@@ -2,6 +2,7 @@ import {
     COUNTER_DECREMENT, 
     COUNTER_INCREMENT, 
     COUNTER_RESET,
+    COUNTER_SAVE,
     COUNTER_LOADING,
     COUNTER_LOADING_SUCCESS,
     COUNTER_LOADING_ERROR
@@ -54,6 +55,14 @@ export function counterReducer(state = initialState, action) {
                 ...state,
                 value: 0
             }
+
+        case COUNTER_SAVE:
+            return {
+                ...state, 
+                value: state.value, 
+
+            }
+
 
         default:
             return {

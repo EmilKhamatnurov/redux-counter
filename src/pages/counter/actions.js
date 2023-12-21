@@ -2,6 +2,7 @@ import {
     COUNTER_DECREMENT, 
     COUNTER_INCREMENT, 
     COUNTER_RESET,
+    COUNTER_SAVE,
     COUNTER_LOADING,
     COUNTER_LOADING_SUCCESS,
     COUNTER_LOADING_ERROR
@@ -29,6 +30,25 @@ export const load = () => {
                 });
             })
     }
+}
+
+export const save = () => {
+    return (dispath) => {
+        dispath({
+            type: COUNTER_SAVE,
+        })
+        API.saveCounter()
+        .then(data => {
+            dispath({
+                type: COUNTER_SAVE,
+            })
+            
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+    })}
+    
 }
 
 export const increment = () => {
