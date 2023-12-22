@@ -2,7 +2,9 @@ import {
     COUNTER_DECREMENT, 
     COUNTER_INCREMENT, 
     COUNTER_RESET,
-    COUNTER_SAVE,
+    COUNTER_SAVE_LOADING,
+    COUNTER_SAVE_LOADING_SUCCESS,
+    COUNTER_SAVE_LOADING_ERROR,
     COUNTER_LOADING,
     COUNTER_LOADING_SUCCESS,
     COUNTER_LOADING_ERROR
@@ -32,21 +34,23 @@ export const load = () => {
     }
 }
 
-export const save = () => {
+export const save = (counter) => {
     return (dispath) => {
         dispath({
-            type: COUNTER_SAVE,
+            type: COUNTER_SAVE_LOADING,
         })
-        API.saveCounter()
-        .then(data => {
+        API.saveCounter(counter)
+        .then(() => {
             dispath({
-                type: COUNTER_SAVE,
+                type: COUNTER_SAVE_LOADING_SUCCESS,
             })
             
             console.log(data);
         })
-        .catch(error => {
-            console.log(error);
+        .catch(() => {
+            dispath({
+                type: COUNTER_SAVE_LOADING_ERROR,
+            })
     })}
     
 }

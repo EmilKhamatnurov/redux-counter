@@ -36,7 +36,7 @@ function CounterPage() {
   }
   
   const handleSave = () => {
-    dispatch(save())
+    dispatch(save(counter))
   }
 
   const handleRetry = () => {

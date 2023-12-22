@@ -2,7 +2,9 @@ import {
     COUNTER_DECREMENT, 
     COUNTER_INCREMENT, 
     COUNTER_RESET,
-    COUNTER_SAVE,
+    COUNTER_SAVE_LOADING,
+    COUNTER_SAVE_LOADING_SUCCESS,
+    COUNTER_SAVE_LOADING_ERROR,
     COUNTER_LOADING,
     COUNTER_LOADING_SUCCESS,
     COUNTER_LOADING_ERROR
@@ -11,8 +13,12 @@ import {
 
 const initialState = {
     value: null, 
+
     isLoading: false, 
-    isError: false
+    isError: false, 
+
+    isSaveLoading: false,
+    isSaveError: false
 }
 
 export function counterReducer(state = initialState, action) {
@@ -56,13 +62,26 @@ export function counterReducer(state = initialState, action) {
                 value: 0
             }
 
-        case COUNTER_SAVE:
+        case COUNTER_SAVE_LOADING:
             return {
                 ...state, 
-                value: state.value, 
-
+                isSaveLoading: true,
+                isSaveError: false
             }
 
+        case COUNTER_SAVE_LOADING_SUCCESS:
+            return {
+                ...state, 
+                isSaveLoading: false, 
+                isSaveError: false
+            }
+
+        case COUNTER_SAVE_LOADING_ERROR:
+            return {
+                ...state, 
+                isSaveLoading: false, 
+                isSaveError: true
+            }
 
         default:
             return {

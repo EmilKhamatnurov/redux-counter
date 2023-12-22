@@ -3,7 +3,12 @@ import React from 'react';
 export function CounterWidget({
     counter,
     isError,
-    isLoading, 
+    isLoading,
+    
+    isSaveLoading,
+    isSaveSuccess,
+    isSaveError,
+    
     handleDecrementBtnClick, 
     handleIncrementBtnClick,
     handleResetBtnClick, 

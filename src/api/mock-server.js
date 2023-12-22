@@ -9,10 +9,13 @@ createServer({
         return {counter: INITIAL_COUNTER}
     })
 
-    this.post("/api/reminders", (schema, request) => {
-      let attrs = JSON.parse(request.requestBody)
-
-      return schema.reminders.create(attrs)
+    this.post("/counter/save", (schema, request) => {
+      const counter = JSON.parse(request.requestBody).counter
+      console.log(counter);
+      // return schema.reminders.create(attrs)
+      return {
+        status: 'ok'
+      }
     })
   },
 })
